@@ -1,0 +1,10 @@
+/home/tsk/learn/mirror/src/main/java/com/example/aipal/AiPalApplication.java
+/home/tsk/learn/mirror/src/main/java/com/example/aipal/AiTools.java
+/home/tsk/learn/mirror/src/main/java/com/example/aipal/ChatController.java
+/home/tsk/learn/mirror/src/main/java/com/example/aipal/ChatService.java
+/home/tsk/learn/mirror/src/main/java/com/example/aipal/EmbeddingService.java
+/home/tsk/learn/mirror/src/main/java/com/example/aipal/GreetingService.java
+/home/tsk/learn/mirror/src/main/java/com/example/aipal/HelloController.java
+/home/tsk/learn/mirror/src/main/java/com/example/aipal/Mood.java
+/home/tsk/learn/mirror/src/main/java/com/example/aipal/StoreService.java
+/home/tsk/learn/mirror/src/main/java/com/example/aipal/Todo.java
