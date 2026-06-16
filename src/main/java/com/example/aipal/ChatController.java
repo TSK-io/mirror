@@ -85,4 +85,9 @@ public class ChatController{
   public String kbcontext(@RequestParam String question){
     return knowledgeService.retrieve(question);
   }
+
+  @GetMapping("/assistant")
+  public String assistant(@RequestParam String conversationId,@RequestParam String question){
+    return knowledgeService.assistant(conversationId,question);
+  }
 }
