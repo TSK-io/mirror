@@ -9,7 +9,9 @@ import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.memory.MessageWindowChatMemory;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.embedding.EmbeddingModel;
+import org.springframework.ai.reader.tika.TikaDocumentReader;
 import org.springframework.ai.vectorstore.SimpleVectorStore;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -55,8 +57,13 @@ public class KnowledgeService {
                   .advisors(a -> a.param(ChatMemory.CONVERSATION_ID, conversationId))
                   .call()
                   .content();
+    }
 
-        
+    public String readFile(){
+        ClassPathResource classPathResource = new ClassPathResource("aipal-doc.txt");
+        TikaDocumentReader tikaDocumentReader = new TikaDocumentReader(classPathResource);
+        List<Document> docs = tikaDocumentReader.read();
+        return "读到 " + docs.size() + " 个文档片段,内容:\n" + docs.get(0).getText();
     }
     
 

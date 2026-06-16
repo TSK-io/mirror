@@ -90,4 +90,9 @@ public class ChatController{
   public String assistant(@RequestParam String conversationId,@RequestParam String question){
     return knowledgeService.assistant(conversationId,question);
   }
+
+  @GetMapping("/kb/readfile")
+  public String readFile(){
+    return knowledgeService.readFile();
+  }
 }
