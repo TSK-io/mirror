@@ -16,10 +16,12 @@ public class ChatController{
 
   private final StoreService storeService;
 
-  public ChatController(ChatService chatService,EmbeddingService embeddingService, StoreService storeService){
+  private final KnowledgeService knowledgeService;
+  public ChatController(ChatService chatService,EmbeddingService embeddingService, StoreService storeService,KnowledgeService knowledgeService){
     this.chatService = chatService;
     this.embeddingService = embeddingService;
     this.storeService = storeService;
+    this.knowledgeService = knowledgeService;
   }
 
   @GetMapping("/chat")
@@ -73,5 +75,14 @@ public class ChatController{
     return storeService.askWithDocs(question);
   }
 
+  @GetMapping("/kb/add")
+  public String kbadd(@RequestParam String text){
+    knowledgeService.addKnowledge(text);
+    return "added\n";
+  }
 
+  @GetMapping("/kb/context")
+  public String kbcontext(@RequestParam String question){
+    return knowledgeService.retrieve(question);
+  }
 }
