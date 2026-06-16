@@ -60,7 +60,7 @@ public class KnowledgeService {
     }
 
     public String readFile(){
-        ClassPathResource classPathResource = new ClassPathResource("aipal-doc.txt");
+        ClassPathResource classPathResource = new ClassPathResource("aipal-doc.pdf");
         TikaDocumentReader tikaDocumentReader = new TikaDocumentReader(classPathResource);
         List<Document> docs = tikaDocumentReader.read();
         return "读到 " + docs.size() + " 个文档片段,内容:\n" + docs.get(0).getText();
