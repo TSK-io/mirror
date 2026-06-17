@@ -10,6 +10,7 @@ import org.springframework.ai.chat.memory.MessageWindowChatMemory;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.ai.reader.tika.TikaDocumentReader;
+import org.springframework.ai.transformer.splitter.TokenTextSplitter;
 import org.springframework.ai.vectorstore.SimpleVectorStore;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
@@ -60,10 +61,20 @@ public class KnowledgeService {
     }
 
     public String readFile(){
-        ClassPathResource classPathResource = new ClassPathResource("aipal-doc.pdf");
+        ClassPathResource classPathResource = new ClassPathResource("aipal-doc.md");
         TikaDocumentReader tikaDocumentReader = new TikaDocumentReader(classPathResource);
         List<Document> docs = tikaDocumentReader.read();
         return "读到 " + docs.size() + " 个文档片段,内容:\n" + docs.get(0).getText();
+    }
+
+    public List<Document> ingestFile(){
+        ClassPathResource classPathResource = new ClassPathResource("aipal-doc.md");
+        TikaDocumentReader tikaDocumentReader = new TikaDocumentReader(classPathResource);
+        List<Document> docs = tikaDocumentReader.read();
+        TokenTextSplitter tokenTextSplitter = new TokenTextSplitter();
+        List<Document> chunks = tokenTextSplitter.apply(docs);
+        simpleVectorStore.add(chunks);
+        return chunks;
     }
     
 

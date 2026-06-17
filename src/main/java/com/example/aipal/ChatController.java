@@ -95,4 +95,10 @@ public class ChatController{
   public String readFile(){
     return knowledgeService.readFile();
   }
+
+  @GetMapping("/kb/ingest")
+  public List<Document> ingestFile() {
+      return knowledgeService.ingestFile();
+  }
+  
 }
